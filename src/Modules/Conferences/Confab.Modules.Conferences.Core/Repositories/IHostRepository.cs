@@ -11,6 +11,6 @@ namespace Confab.Modules.Conferences.Core.Repositories
         Task<IReadOnlyList<Host>> BrowseAsync();
         Task AddAsync(Host host);
         Task UpdateAsync(Host host);
-        Task<Host> DeleteAsync(Host host);
+        Task DeleteAsync(Host host);
     }
 }
