@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Confab.Modules.Conferences.Core.DTO
 {
-    public class HostDto
+    internal class HostDto
     {
         public Guid Id { get; set; }
         
