@@ -7,7 +7,7 @@ namespace Confab.Modules.Conferences.Core.Services
 {
     internal interface IHostService
     {
-        Task AddAsync(HostDetailsDto dto);
+        Task AddAsync(HostDto dto);
         Task<HostDetailsDto> GetAsync(Guid id);
         Task<IReadOnlyCollection<HostDto>> BrowseAsync();
         Task UpdateAsync(HostDetailsDto dto);

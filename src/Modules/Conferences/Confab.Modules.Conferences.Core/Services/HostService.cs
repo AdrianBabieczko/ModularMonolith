@@ -21,7 +21,7 @@ namespace Confab.Modules.Conferences.Core.Services
             _hostDeletionPolicy = hostDeletionPolicy;
         }
         
-        public async Task AddAsync(HostDetailsDto dto)
+        public async Task AddAsync(HostDto dto)
         {
             dto.Id = Guid.NewGuid();
             await _hostRepository.AddAsync(new Host
