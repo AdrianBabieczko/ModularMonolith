@@ -4,6 +4,7 @@ using Confab.Modules.Conferences.Core.Entities;
 
 namespace Confab.Modules.Conferences.Core.DTO
 {
+    
     public class ConferenceDto
     {
         public Guid Id { get; set; }
