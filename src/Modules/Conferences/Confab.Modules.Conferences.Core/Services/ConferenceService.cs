@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Confab.Modules.Conferences.Core.DTO;
 using Confab.Modules.Conferences.Core.Entities;
@@ -58,9 +59,11 @@ namespace Confab.Modules.Conferences.Core.Services
             return dto;
         }
 
-        public Task<IReadOnlyCollection<ConferenceDto>> BrowseAsync()
+        public async Task<IReadOnlyList<ConferenceDto>> BrowseAsync()
         {
-            throw new NotImplementedException();
+            var conferences = await _conferenceRepository.BrowseAsync();
+
+            return conferences.Select(Map<ConferenceDto>).ToList(); 
         }
 
         public async Task UpdateAsync(ConferenceDetailsDto dto)
