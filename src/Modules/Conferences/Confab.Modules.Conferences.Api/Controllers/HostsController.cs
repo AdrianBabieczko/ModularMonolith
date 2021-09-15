@@ -7,12 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Confab.Modules.Conferences.Api.Controllers
 {
-    [Route(BasePath + "[controller]")]
-    internal class HostController: BaseController
+    internal class HostsController: BaseController
     {
         private readonly IHostService _hostService;
         
-        public HostController(IHostService hostService)
+        public HostsController(IHostService hostService)
         {
             _hostService = hostService;
         }
