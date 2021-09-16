@@ -45,7 +45,6 @@ namespace Confab.Modules.Conferences.Core.Services
             {
                 Id = x.Id,
                 From = x.From,
-                Location = x.Location,
                 Name = x.Name,
                 To = x.To,
                 HostId = x.HostId,
