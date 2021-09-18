@@ -8,7 +8,7 @@ namespace Confab.Modules.Conferences.Core.Repositories
 {
     internal class InMemoryHostRepository : IHostRepository
     {
-        // Not thread-safe, user Concurrent collections
+        // Not thread-safe, use Concurrent collections
         private readonly List<Host> _hosts = new();
 
         public Task<Host> GetAsync(Guid id) => Task.FromResult(_hosts.SingleOrDefault(x => x.Id == id));

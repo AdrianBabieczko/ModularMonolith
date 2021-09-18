@@ -9,7 +9,7 @@ namespace Confab.Modules.Conferences.Core.Services
     {
         Task AddAsync(HostDto dto);
         Task<HostDetailsDto> GetAsync(Guid id);
-        Task<IReadOnlyCollection<HostDto>> BrowseAsync();
+        Task<IReadOnlyList<HostDto>> BrowseAsync();
         Task UpdateAsync(HostDetailsDto dto);
         Task DeleteAsync(Guid id);
     }

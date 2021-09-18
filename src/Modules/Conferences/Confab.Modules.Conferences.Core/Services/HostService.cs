@@ -56,7 +56,7 @@ namespace Confab.Modules.Conferences.Core.Services
             return dto;
         }
 
-        public async Task<IReadOnlyCollection<HostDto>> BrowseAsync()
+        public async Task<IReadOnlyList<HostDto>> BrowseAsync()
         {
             var hosts = await _hostRepository.BrowseAsync();
 
