@@ -93,14 +93,14 @@ namespace Confab.Modules.Conferences.Core.Services
                 throw new ConferenceNotFoundException(id);
             }
 
-            if (await _conferenceDeletionPolicy.CanDeleteAsync(conference) == false)
+            if (await _conferenceDeletionPolicy.CanDeleteAsync(conference) is false)
             {
                 throw new CannotDeleteConferenceException(id);
             }
 
             await _conferenceRepository.DeleteAsync(conference);
         }
-
+        
         private static T Map<T>(Conference conference) where T : ConferenceDto, new()
             => new T()
             {
@@ -112,7 +112,7 @@ namespace Confab.Modules.Conferences.Core.Services
                 LogoUrl = conference.LogoUrl,
                 ParticipantsLimit = conference.ParticipantsLimit,
                 HostId = conference.HostId,
-                HostName = conference.Host is null ? "" : conference.Host.Name
+                HostName = conference.Host?.Name
             }; 
     }
 }
