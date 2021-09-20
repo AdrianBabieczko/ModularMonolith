@@ -112,7 +112,7 @@ namespace Confab.Modules.Conferences.Core.Services
                 LogoUrl = conference.LogoUrl,
                 ParticipantsLimit = conference.ParticipantsLimit,
                 HostId = conference.HostId,
-                HostName = conference.Host.Name
+                HostName = conference.Host is null ? "" : conference.Host.Name
             }; 
     }
 }
