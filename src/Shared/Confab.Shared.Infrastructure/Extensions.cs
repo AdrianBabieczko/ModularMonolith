@@ -3,6 +3,8 @@ using System.Runtime.InteropServices.ComTypes;
 using Confab.Shared.Abstractions;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Exceptions;
+using Confab.Shared.Infrastructure.Postgres;
+using Confab.Shared.Infrastructure.Services;
 using Confab.Shared.Infrastructure.Time;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -17,7 +19,9 @@ namespace Confab.Shared.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddErrorHandling();
+            services.AddPostgres();
             services.AddSingleton<IClock, UtcClock>();
+            services.AddHostedService<AppInitializer>();
             services.AddControllers()
                 .ConfigureApplicationPartManager(manager =>
                 {
