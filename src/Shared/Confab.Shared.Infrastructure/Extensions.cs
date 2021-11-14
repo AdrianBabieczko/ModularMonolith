@@ -1,5 +1,4 @@
 using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices.ComTypes;
 using Confab.Shared.Abstractions;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Exceptions;
@@ -7,7 +6,6 @@ using Confab.Shared.Infrastructure.Postgres;
 using Confab.Shared.Infrastructure.Services;
 using Confab.Shared.Infrastructure.Time;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,12 +33,7 @@ namespace Confab.Shared.Infrastructure
         {
             app.UseErrorHandling();
             app.UseRouting();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-                endpoints.MapGet("/", context => context.Response.WriteAsync("Confab API!"));
-            });
-            
+
             return app;
         }
 
