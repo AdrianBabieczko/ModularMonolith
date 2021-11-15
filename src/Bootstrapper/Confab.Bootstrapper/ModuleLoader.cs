@@ -4,18 +4,33 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Confab.Shared.Abstractions.Modules;
+using Microsoft.Extensions.Configuration;
 
 namespace Confab.Bootstrapper
 {
     internal static class ModuleLoader
     {
-        public static IList<Assembly> LoadAssemblies()
+        public static IList<Assembly> LoadAssemblies(IConfiguration configuration)
         {
+            const string modulePart = "Confab.Modules.";
+            
             var assemblies = AppDomain.CurrentDomain.GetAssemblies().ToList();
             var locations = assemblies.Where(x => !x.IsDynamic).Select(x => x.Location).ToArray();
             var files = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.dll")
                 .Where(x => !locations.Contains(x, StringComparer.InvariantCultureIgnoreCase))
                 .ToList();
+
+            var disableModules = new List<string>();
+            foreach (var file in files)
+            {
+                if (!file.Contains(modulePart))
+                {
+                    continue;
+                }
+
+                var moduleName = file.Split(modulePart)[1].Split(".")[0];
+                var enabled = configuration.GetValue<bool>($"{moduleName}");
+            }
 
             files.ForEach(x => assemblies.Add(AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(x))));
 
