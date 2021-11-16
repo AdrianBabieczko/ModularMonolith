@@ -25,7 +25,7 @@ namespace Confab.Bootstrapper
         
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructure();
+            services.AddInfrastructure(_assemblies, _modules);
 
             foreach (var module in _modules)
             {
