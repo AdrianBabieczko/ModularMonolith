@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace Confab.Modules.Conferences.Api.Controllers
+namespace Confab.Modules.Speakers.Api.Controllers
 {
     [ApiController]
-    [Route(ConferencesModule.BasePath + "/[controller]")]
+    [Route(SpeakersModule.BasePath + "[controller")]
     internal class BaseController : ControllerBase
     {
         protected ActionResult<T> OkOrNotFound<T>(T model)
