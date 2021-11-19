@@ -8,8 +8,8 @@ namespace Confab.Modules.Speakers.Core.Services
     internal interface ISpeakerService
     {
         Task<SpeakerDetailsDto> GetAsync(Guid id);
-        Task AddAsync(SpeakerDetailsDto dto);
         Task<IReadOnlyCollection<SpeakerDto>> BrowseAsync();
+        Task AddAsync(SpeakerDetailsDto dto);
         Task UpdateAsync(SpeakerDetailsDto dto);
         Task DeleteAsync(Guid id);
     }
