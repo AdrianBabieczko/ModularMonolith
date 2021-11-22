@@ -5,6 +5,7 @@ using Confab.Modules.Speakers.Core.DTO;
 
 namespace Confab.Modules.Speakers.Core.Services
 {
+    //TODO: Implement this!! 
     public class SpeakerService : ISpeakerService
     {
         public Task<SpeakerDetailsDto> GetAsync(Guid id)

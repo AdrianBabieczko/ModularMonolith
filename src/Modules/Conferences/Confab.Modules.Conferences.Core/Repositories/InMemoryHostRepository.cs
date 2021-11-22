@@ -6,6 +6,7 @@ using Confab.Modules.Conferences.Core.Entities;
 
 namespace Confab.Modules.Conferences.Core.Repositories
 {
+/*
     internal class InMemoryHostRepository : IHostRepository
     {
         // Not thread-safe, use Concurrent collections
@@ -36,4 +37,5 @@ namespace Confab.Modules.Conferences.Core.Repositories
             return Task.CompletedTask;
         }
     }
+*/
 }

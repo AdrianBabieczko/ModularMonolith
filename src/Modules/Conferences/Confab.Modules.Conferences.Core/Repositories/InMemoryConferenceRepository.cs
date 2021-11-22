@@ -6,6 +6,7 @@ using Confab.Modules.Conferences.Core.Entities;
 
 namespace Confab.Modules.Conferences.Core.Repositories
 {
+/*
     internal class InMemoryConferenceRepository : IConferenceRepository
     {
         // Not thread-safe, user Concurrent collections
@@ -38,4 +39,5 @@ namespace Confab.Modules.Conferences.Core.Repositories
             return Task.CompletedTask;
         }
     }
+*/
 }
