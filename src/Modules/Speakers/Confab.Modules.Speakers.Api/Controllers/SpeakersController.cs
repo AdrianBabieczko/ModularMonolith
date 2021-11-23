@@ -16,7 +16,7 @@ namespace Confab.Modules.Speakers.Api.Controllers
             _speakerService = speakerService;
         }
 
-        [HttpGet("{id:guid")]
+        [HttpGet("{id:guid}")]
         public async Task<ActionResult<SpeakerDetailsDto>> Get(Guid id) =>
             OkOrNotFound(await _speakerService.GetAsync(id));
 

@@ -5,7 +5,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\Shared\Confab.Shared.Abstractions\Confab.Shared.Abstractions.csproj" />
         <ProjectReference Include="..\Confab.Modules.Speakers.Core/Confab.Modules.Speakers.Core.csproj" />
     </ItemGroup>
 
@@ -18,12 +17,6 @@
       <Content Include="module.speakers.development.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore.Mvc.Core, Version=5.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60">
-        <HintPath>..\..\..\..\..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\5.0.9\Microsoft.AspNetCore.Mvc.Core.dll</HintPath>
-      </Reference>
     </ItemGroup>
     
 </Project>
