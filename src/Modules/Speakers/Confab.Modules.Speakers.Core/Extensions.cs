@@ -13,13 +13,9 @@ namespace Confab.Modules.Speakers.Core
     internal static class Extensions
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
-        {
-            services.AddPostgres<SpeakersDbContext>();
-            
-            services.AddScoped<ISpeakerRepository, SpeakerRepository>();
-            services.AddScoped<ISpeakerService, SpeakerService>();
-
-            return services;
-        }
+            => services
+                .AddScoped<ISpeakersService, SpeakersService>()
+                .AddScoped<ISpeakerRepository, SpeakerRepository>()
+                .AddPostgres<SpeakersDbContext>();
     }
 }

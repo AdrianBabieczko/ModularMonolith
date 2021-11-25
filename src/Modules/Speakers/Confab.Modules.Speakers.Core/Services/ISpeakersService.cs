@@ -5,7 +5,7 @@ using Confab.Modules.Speakers.Core.DTO;
 
 namespace Confab.Modules.Speakers.Core.Services
 {
-    internal interface ISpeakerService
+    internal interface ISpeakersService
     {
         Task<SpeakerDetailsDto> GetAsync(Guid id);
         Task<IReadOnlyCollection<SpeakerDto>> BrowseAsync();

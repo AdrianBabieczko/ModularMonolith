@@ -9,11 +9,11 @@ using Confab.Modules.Speakers.Core.Repositories;
 
 namespace Confab.Modules.Speakers.Core.Services
 {
-    public class SpeakerService : ISpeakerService
+    public class SpeakersService : ISpeakersService
     {
         private readonly ISpeakerRepository _speakerRepository;
 
-        public SpeakerService(ISpeakerRepository speakerRepository)
+        public SpeakersService(ISpeakerRepository speakerRepository)
         {
             _speakerRepository = speakerRepository;
         }
