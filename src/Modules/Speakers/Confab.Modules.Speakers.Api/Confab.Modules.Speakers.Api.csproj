@@ -9,13 +9,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="module.speakers.json" />
       <Content Include="module.speakers.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
-      <None Remove="module.speakers.development.json" />
       <Content Include="module.speakers.development.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+          <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+          <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       </Content>
     </ItemGroup>
     
