@@ -1,3 +1,4 @@
+using Confab.Modules.Conferences.Core;
 using Confab.Shared.Abstractions.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,12 +13,11 @@ namespace Confab.Modules.Conferences.Api
         
         public void Register(IServiceCollection services)
         {
-            throw new System.NotImplementedException();
+            services.AddCore();
         }
 
         public void Use(IApplicationBuilder app)
         {
-            throw new System.NotImplementedException();
         }
     }
 }
