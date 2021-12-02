@@ -1,7 +1,12 @@
+using System;
+
 namespace Confab.Modules.Speakers.Core.Entities
 {
     public class Speaker
     {
-        //TODO: implement this!!
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string Description { get; set; }
     }
 }
