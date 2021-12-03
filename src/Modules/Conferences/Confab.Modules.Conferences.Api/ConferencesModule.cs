@@ -5,12 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Confab.Modules.Conferences.Api
 {
-    public class ConferencesModule: IModule
+    public class ConferencesModule : IModule
     {
         public const string BasePath = "conferences-module";
         public string Name { get; } = "Conferences";
         public string Path => BasePath;
-        
+
         public void Register(IServiceCollection services)
         {
             services.AddCore();

@@ -5,11 +5,12 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Confab.Modules.Speakers.Api
 {
-    public class SpeakersModule :IModule
+    public class SpeakersModule : IModule
     {
         public const string BasePath = "speakers-module";
         public string Name { get; } = "Speakers";
         public string Path => BasePath;
+
         public void Register(IServiceCollection services)
         {
             services.AddCore();
