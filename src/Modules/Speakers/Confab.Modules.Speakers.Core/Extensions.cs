@@ -2,6 +2,7 @@ using System.Runtime.CompilerServices;
 using Confab.Modules.Speakers.Core.DAL;
 using Confab.Modules.Speakers.Core.DAL.Repositories;
 using Confab.Modules.Speakers.Core.Repositories;
+using Confab.Modules.Speakers.Core.Services;
 using Confab.Shared.Infrastructure.Postgres;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,7 +15,9 @@ namespace Confab.Modules.Speakers.Core
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
             services.AddPostgres<SpeakersDbContext>();
+            
             services.AddScoped<ISpeakerRepository, SpeakerRepository>();
+            services.AddScoped<ISpeakerService, SpeakerService>();
             
             return services;
         }
