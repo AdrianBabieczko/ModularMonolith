@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using Confab.Shared.Abstractions;
 using Confab.Shared.Abstractions.Modules;
+using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Exceptions;
 using Confab.Shared.Infrastructure.Postgres;
@@ -71,7 +71,9 @@ namespace Confab.Shared.Infrastructure
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
             app.UseErrorHandling();
+            app.UseAuthentication();
             app.UseRouting();
+            app.UseAuthorization();
 
             return app;
         }

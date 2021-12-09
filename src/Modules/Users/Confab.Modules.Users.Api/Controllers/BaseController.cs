@@ -8,12 +8,12 @@ namespace Confab.Modules.Users.Api.Controllers
     {
         protected ActionResult<T> OkOrNotFound<T>(T model)
         {
-            if (model is null)
+            if (model is not null)
             {
-                return NotFound();
+                return Ok(model);
             }
 
-            return Ok(model);
+            return NotFound();
         }
     }
 }
