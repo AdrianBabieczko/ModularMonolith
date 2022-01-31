@@ -8,7 +8,6 @@ namespace Confab.Modules.Users.Core.Services
 {
     public interface IIdentityService
     {
-        //TODO: implement!
         Task<AccountDto> GetAsync(Guid id);
 
         Task SignUpAsync(SingUpDto dto);
