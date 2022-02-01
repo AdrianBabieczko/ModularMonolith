@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Confab.Modules.Users.Core.DAL.Repositories
 {
-    public class UserRepository
+    public class UserRepository: IUserRepository
     {
         private readonly UsersDbContext _context;
         private readonly DbSet<User> _users;
@@ -31,6 +31,5 @@ namespace Confab.Modules.Users.Core.DAL.Repositories
             _users.Update(user);
             await _context.SaveChangesAsync();
         }
-        
     }
 }

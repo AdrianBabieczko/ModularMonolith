@@ -1,7 +1,7 @@
 {
-  "speakers":{
+  "users":{
     "module":{
-      "name":"Users",
+      "name": "Users",
       "enabled": true
     }
   }

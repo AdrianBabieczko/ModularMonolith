@@ -23,7 +23,7 @@ namespace Confab.Modules.Users.Api.Controllers
             OkOrNotFound(await _identityService.GetAsync(Guid.Parse(User.Identity.Name)));
 
         [HttpPost("sign-up")]
-        public async Task<ActionResult> SignUpAsync(SingUpDto dto)
+        public async Task<ActionResult> SignUpAsync(SignUpDto dto)
         {
             await _identityService.SignUpAsync(dto);
             return NoContent();

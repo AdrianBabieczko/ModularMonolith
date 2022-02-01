@@ -8,4 +8,11 @@
       <ProjectReference Include="..\Confab.Modules.Users.Core\Confab.Modules.Users.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="module.users.json" />
+      <Content Include="module.users.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
