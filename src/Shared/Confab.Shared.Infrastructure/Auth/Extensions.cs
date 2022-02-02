@@ -2,26 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Confab.Shared.Abstractions.Auth;
 using Confab.Shared.Abstractions.Modules;
-using Confab.Shared.Infrastructure;
-using Confab.Shared.Infrastructure.Auth;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization.Policy;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Modular.Infrastructure.Auth
+namespace Confab.Shared.Infrastructure.Auth
 {
     public static class Extensions
     {
-        private const string AccessTokenCookieName = "__access-token";
-        private const string AuthorizationHeader = "authorization";
-
         public static IServiceCollection AddAuth(this IServiceCollection services, IList<IModule> modules = null,
             Action<JwtBearerOptions> optionsFactory = null)
         {
@@ -32,7 +23,7 @@ namespace Modular.Infrastructure.Auth
             {
                 services.AddSingleton<IPolicyEvaluator, DisabledAuthenticationPolicyEvaluator>();
             }
-            
+
             var tokenValidationParameters = new TokenValidationParameters
             {
                 RequireAudience = options.RequireAudience,
@@ -96,19 +87,6 @@ namespace Modular.Infrastructure.Auth
                         o.Challenge = options.Challenge;
                     }
 
-                    o.Events = new JwtBearerEvents
-                    {
-                        OnMessageReceived = context =>
-                        {
-                            if (context.Request.Cookies.TryGetValue(AccessTokenCookieName, out var token))
-                            {
-                                context.Token = token;
-                            }
-
-                            return Task.CompletedTask;
-                        },
-                    };
-
                     optionsFactory?.Invoke(o);
                 });
 
@@ -117,7 +95,6 @@ namespace Modular.Infrastructure.Auth
 
             var policies = modules?.SelectMany(x => x.Policies ?? Enumerable.Empty<string>()) ??
                            Enumerable.Empty<string>();
-            
             services.AddAuthorization(authorization =>
             {
                 foreach (var policy in policies)
@@ -127,31 +104,6 @@ namespace Modular.Infrastructure.Auth
             });
 
             return services;
-        }
-
-        public static IApplicationBuilder UseAuth(this IApplicationBuilder app)
-        {
-            app.UseAuthentication();
-            app.Use(async (ctx, next) =>
-            {
-                if (ctx.Request.Headers.ContainsKey(AuthorizationHeader))
-                {
-                    ctx.Request.Headers.Remove(AuthorizationHeader);
-                }
-
-                if (ctx.Request.Cookies.ContainsKey(AccessTokenCookieName))
-                {
-                    var authenticateResult = await ctx.AuthenticateAsync(JwtBearerDefaults.AuthenticationScheme);
-                    if (authenticateResult.Succeeded && authenticateResult.Principal is not null)
-                    {
-                        ctx.User = authenticateResult.Principal;
-                    }
-                }
-
-                await next();
-            });
-
-            return app;
         }
     }
 }

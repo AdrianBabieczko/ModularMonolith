@@ -28,9 +28,7 @@ namespace Confab.Shared.Infrastructure.Auth
 
             _options = options;
             _clock = clock;
-            _signingCredentials =
-                new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.IssuerSigningKey)),
-                    SecurityAlgorithms.HmacSha256);
+            _signingCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.IssuerSigningKey)),  SecurityAlgorithms.HmacSha256);
             _issuer = options.Issuer;
         }
 
@@ -39,19 +37,17 @@ namespace Confab.Shared.Infrastructure.Auth
         {
             if (string.IsNullOrWhiteSpace(userId))
             {
-                throw new ArgumentException("User ID claims (subject) cannot be empty.", nameof(userId));
+                throw new ArgumentException("User ID claim (subject) cannot be empty.", nameof(userId));
             }
 
             var now = _clock.CurrentDate();
-
             var jwtClaims = new List<Claim>
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim(JwtRegisteredClaimNames.UniqueName, userId),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeMilliseconds().ToString())
+                new(JwtRegisteredClaimNames.Sub, userId),
+                new(JwtRegisteredClaimNames.UniqueName, userId),
+                new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                new(JwtRegisteredClaimNames.Iat, new DateTimeOffset(now).ToUnixTimeMilliseconds().ToString())
             };
-
             if (!string.IsNullOrWhiteSpace(role))
             {
                 jwtClaims.Add(new Claim(ClaimTypes.Role, role));
@@ -75,12 +71,17 @@ namespace Confab.Shared.Infrastructure.Auth
 
             var expires = now.Add(_options.Expiry);
 
-            var jwt = new JwtSecurityToken(_issuer, claims: jwtClaims, notBefore: now, expires: expires,
-                signingCredentials: _signingCredentials);
+            var jwt = new JwtSecurityToken(
+                _issuer,
+                claims: jwtClaims,
+                notBefore: now,
+                expires: expires,
+                signingCredentials: _signingCredentials
+            );
 
             var token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
-            return new JsonWebToken()
+            return new JsonWebToken
             {
                 AccessToken = token,
                 RefreshToken = string.Empty,

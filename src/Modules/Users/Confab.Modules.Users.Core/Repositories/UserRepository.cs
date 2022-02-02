@@ -1,9 +1,11 @@
 using System;
 using System.Threading.Tasks;
+using Confab.Modules.Users.Core.DAL;
+using Confab.Modules.Users.Core.DAL.Repositories;
 using Confab.Modules.Users.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Confab.Modules.Users.Core.DAL.Repositories
+namespace Confab.Modules.Users.Core.Repositories
 {
     public class UserRepository: IUserRepository
     {
