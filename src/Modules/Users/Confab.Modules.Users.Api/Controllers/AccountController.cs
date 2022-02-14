@@ -11,18 +11,18 @@ namespace Confab.Modules.Users.Api.Controllers
     internal class AccountController : BaseController
     {
         private readonly IIdentityService _identityService;
-        private readonly IContext _context;
+        // private readonly IContext _context;
 
-        public AccountController(IIdentityService identityService, IContext context)
+        public AccountController(IIdentityService identityService)
         {
             _identityService = identityService;
-            _context = context;
+            // _context = context;
         }
 
-        [HttpGet]
-        [Authorize]
-        public async Task<ActionResult<AccountDto>> GetAsync() =>
-            OkOrNotFound(await _identityService.GetAsync(_context.Identity.Id));
+        // [HttpGet]
+        // [Authorize]
+        // public async Task<ActionResult<AccountDto>> GetAsync() =>
+        //     OkOrNotFound(await _identityService.GetAsync(_context.Identity.Id));
 
         [HttpPost("sign-up")]
         public async Task<ActionResult> SignUpAsync(SignUpDto dto)

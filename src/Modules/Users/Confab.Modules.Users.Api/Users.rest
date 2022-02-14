@@ -1,5 +1,5 @@
 @url = http://localhost:5000/users-module
-@email = user1@confab.io
+@email = user@confab.io
 @password = secret
 @role = user
 @accessToken = secret
@@ -11,11 +11,14 @@ GET {{url}}
 GET {{url}}/account Authorization: Bearer {{accessToken}}
 
 ###
-POST {{url}}/account/sign-up Content-Type: application/json
+POST {{url}}/account/sign-up 
+content-Type: application/json
+
 {
-"email": "{{email}}", "password": "{{password}}", "role": "{{role}}", "claims": {
-
-"permissions": ["conferences", "hosts", "speakers", "tickets", "users"]
-}
-
+    "email": "{{email}}",
+    "password": "{{password}}",
+    "role": "{{role}}",
+    "claims": {
+        "permissions": ["conferences", "hosts", "speakers", "users"]
+    }
 }
