@@ -34,14 +34,13 @@ namespace Confab.Bootstrapper
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
         { 
+            logger.LogInformation($"Modules: {string.Join(", ", _modules.Select(x => x.Name))}");
             app.UseInfrastructure();
             foreach (var module in _modules)
             {
                 module.Use(app);
             }
 
-            logger.LogInformation($"Modules: {string.Join(", ", _modules.Select(x => x.Name))}");
-            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

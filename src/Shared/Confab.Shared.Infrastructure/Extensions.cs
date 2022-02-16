@@ -86,7 +86,6 @@ namespace Confab.Shared.Infrastructure
 
         public static IApplicationBuilder UseInfrastructure(this IApplicationBuilder app)
         {
-            app.UseCors(CorsPolicy);
             app.UseErrorHandling();
             app.UseAuthentication();
             app.UseRouting();
