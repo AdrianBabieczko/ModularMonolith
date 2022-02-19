@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 [assembly: InternalsVisibleTo("Confab.Bootstrapper")]
 namespace Confab.Shared.Infrastructure
@@ -54,7 +55,17 @@ namespace Confab.Shared.Infrastructure
                         .WithHeaders("Content-Type", "Authorization");
                 });
             });
-           
+
+            services.AddSwaggerGen(swagger =>
+            {
+                swagger.CustomSchemaIds(x => x.FullName);
+                swagger.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Confab API",
+                    Version = "v1"
+                });
+            });
+            
             services.AddMemoryCache();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuth(modules);
@@ -88,6 +99,13 @@ namespace Confab.Shared.Infrastructure
         {
             app.UseCors(CorsPolicy);
             app.UseErrorHandling();
+            app.UseSwagger();
+            app.UseReDoc(reDoc =>
+            {
+                reDoc.RoutePrefix = "docks";
+                reDoc.SpecUrl("/swagger/v1/swagger.json");
+                reDoc.DocumentTitle = "Confab API";
+            });
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
@@ -102,26 +120,11 @@ namespace Confab.Shared.Infrastructure
             return configuration.GetOptions<T>(sectionName);
         }
 
-        public static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
+        private static T GetOptions<T>(this IConfiguration configuration, string sectionName) where T : new()
         {
             var options = new T();
             configuration.GetSection(sectionName).Bind(options);
             return options;
-        }
-
-        public static string GetModuleName(this object value)
-            => value?.GetType().GetModuleName() ?? string.Empty;
-
-        public static string GetModuleName(this Type type)
-        {
-            if (type?.Namespace is null)
-            {
-                return string.Empty;
-            }
-
-            return type.Namespace.StartsWith("Confab.Modules.")
-                ? type.Namespace.Split(".")[2].ToLowerInvariant()
-                : string.Empty;
         }
     }
 }
