@@ -4,4 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="../Confab.Modules.Tickets.Core/Confab.Modules.Tickets.Core.csproj" />
+    </ItemGroup>
+    
 </Project>
