@@ -6,7 +6,7 @@ namespace Confab.Modules.Tickets.Api.Controllers
     [ApiController]
     [Route(TicketsModule.BasePath + "/[controller]")]
     [ProducesDefaultContentType]
-    internal abstract class BaseController: ControllerBase
+    internal abstract class BaseController : ControllerBase
     {
         protected ActionResult<T> OkOrNotFount<T>(T model)
         {

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Confab.Modules.Tickets.Core;
 using Confab.Shared.Abstractions.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Confab.Modules.Tickets.Api
 {
-    public class TicketsModule: IModule
+    internal class TicketsModule : IModule
     {
         public const string BasePath = "tickets-module";
         public string Name { get; } = "Tickets";
@@ -14,12 +15,11 @@ namespace Confab.Modules.Tickets.Api
 
         public void Register(IServiceCollection services)
         {
-            throw new System.NotImplementedException();
+            services.AddCore();
         }
 
         public void Use(IApplicationBuilder app)
         {
-            throw new System.NotImplementedException();
         }
     }
 }

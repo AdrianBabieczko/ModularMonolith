@@ -9,5 +9,10 @@ namespace Confab.Modules.Tickets.Core.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task PurchaseAsync(Guid conferenceId, Guid identityId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
