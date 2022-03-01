@@ -17,24 +17,24 @@ namespace Confab.Modules.Tickets.Core.DAL.Repositories
             _conferences = _context.Conferences;
         }
 
-        public Task<Conference> GetAsync(Guid id)
+        public Task<Conference> GetAsync(Guid id) => _conferences.SingleOrDefaultAsync(x => x.Id == id);
+
+        public async Task AddAsync(Conference conference)
         {
-            throw new NotImplementedException();
+            await _conferences.AddAsync(conference);
+            await _context.SaveChangesAsync();
         }
 
-        public Task AddAsync(Conference conference)
+        public async Task UpdateAsync(Conference conference)
         {
-            throw new NotImplementedException();
+            _conferences.Update(conference);
+            await _context.SaveChangesAsync();
         }
 
-        public Task UpdateAsync(Conference conference)
+        public async Task DeleteAsync(Conference conference)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task DeleteAsync(Conference conference)
-        {
-            throw new NotImplementedException();
+            _conferences.Remove(conference);
+            await _context.SaveChangesAsync();
         }
     }
 }
