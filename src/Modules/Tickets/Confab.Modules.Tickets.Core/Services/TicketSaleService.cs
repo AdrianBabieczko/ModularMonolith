@@ -17,7 +17,7 @@ namespace Confab.Modules.Tickets.Core.Services
         private readonly ITicketRepository _ticketRepository;
         private readonly ITicketGenerator _ticketGenerator;
         private readonly IClock _clock;
-        private ILogger _logger;
+        private readonly ILogger _logger;
 
         public TicketSaleService(IConferenceRepository conferenceRepository, ITicketSaleRepository ticketSaleRepository,
             ITicketRepository ticketRepository, ITicketGenerator ticketGenerator, IClock clock, ILogger logger)
