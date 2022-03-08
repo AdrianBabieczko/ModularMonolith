@@ -6,7 +6,8 @@ using Confab.Modules.Tickets.Core.Services;
 using Confab.Shared.Infrastructure.Postgres;
 using Microsoft.Extensions.DependencyInjection;
 
-[assembly:InternalsVisibleTo("Confab.Modules.Tickets.Api")]
+[assembly: InternalsVisibleTo("Confab.Modules.Tickets.Api")]
+
 namespace Confab.Modules.Tickets.Core
 {
     internal static class Extensions
@@ -14,6 +15,7 @@ namespace Confab.Modules.Tickets.Core
         public static IServiceCollection AddCore(this IServiceCollection services)
             => services
                 .AddScoped<ITicketService, TicketsService>()
+                .AddScoped<ITicketSaleService, TicketSaleService>()
                 .AddScoped<IConferenceRepository, ConferenceRepository>()
                 .AddScoped<ITicketRepository, TicketRepository>()
                 .AddScoped<ITicketSaleRepository, TicketSaleRepository>()
