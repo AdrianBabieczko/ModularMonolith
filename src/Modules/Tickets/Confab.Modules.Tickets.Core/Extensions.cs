@@ -14,7 +14,7 @@ namespace Confab.Modules.Tickets.Core
     {
         public static IServiceCollection AddCore(this IServiceCollection services)
             => services
-                .AddScoped<ITicketService, TicketsService>()
+                .AddScoped<ITicketService, TicketService>()
                 .AddScoped<ITicketSaleService, TicketSaleService>()
                 .AddScoped<IConferenceRepository, ConferenceRepository>()
                 .AddScoped<ITicketRepository, TicketRepository>()
