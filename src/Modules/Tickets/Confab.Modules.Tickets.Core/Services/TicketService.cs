@@ -92,7 +92,7 @@ namespace Confab.Modules.Tickets.Core.Services
             await _ticketRepository.UpdateAsync(ticket);
             _logger.LogInformation(
                 $"Ticket with ID: '{ticket.Id}' was purchased for the conference: '{conferenceId}' by user: '{userId}'.");
-            await _messageBroker.PublishAsync(new TicketPurchased(ticket.Id, conferenceId, userId));
+            //await _messageBroker.PublishAsync(new TicketPurchased(ticket.Id, conferenceId, userId));
         }
     }
 }
