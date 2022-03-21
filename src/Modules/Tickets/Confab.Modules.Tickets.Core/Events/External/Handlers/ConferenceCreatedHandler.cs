@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Confab.Modules.Conferences.Messages.Events;
 using Confab.Modules.Tickets.Core.Entities;
 using Confab.Modules.Tickets.Core.Repositories;
 using Confab.Shared.Abstractions.Events;
@@ -30,7 +31,7 @@ namespace Confab.Modules.Tickets.Core.Events.External.Handlers
             };
 
             await _conferenceRepository.AddAsync(conference);
-            _logger.LogInformation($"Added a conference with ID: '{@event.Id}'");
+            _logger.LogInformation($"Added a conference with ID: '{@event.Id}'.");
         }
     }
 }
