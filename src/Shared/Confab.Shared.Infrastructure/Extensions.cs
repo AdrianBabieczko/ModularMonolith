@@ -9,6 +9,7 @@ using Confab.Shared.Abstractions.Time;
 using Confab.Shared.Infrastructure.Api;
 using Confab.Shared.Infrastructure.Auth;
 using Confab.Shared.Infrastructure.Contexts;
+using Confab.Shared.Infrastructure.Events;
 using Confab.Shared.Infrastructure.Exceptions;
 using Confab.Shared.Infrastructure.Modules;
 using Confab.Shared.Infrastructure.Postgres;
@@ -74,6 +75,7 @@ namespace Confab.Shared.Infrastructure
             services.AddModulesInfo(modules);
             services.AddAuth(modules);
             services.AddErrorHandling();
+            services.AddEvents(assemblies);
             services.AddPostgres();
             services.AddSingleton<IClock, UtcClock>();
             services.AddHostedService<AppInitializer>();
