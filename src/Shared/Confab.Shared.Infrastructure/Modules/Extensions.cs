@@ -1,6 +1,9 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
+using Confab.Shared.Abstractions.Events;
 using Confab.Shared.Abstractions.Modules;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -33,7 +36,7 @@ namespace Confab.Shared.Infrastructure.Modules
                 return context.Response.WriteAsJsonAsync(moduleInfoProvider.Modules);
             });
         }
-        
+
         internal static IHostBuilder ConfigureModules(this IHostBuilder builder)
             => builder.ConfigureAppConfiguration((ctx, cfg) =>
             {
@@ -50,5 +53,22 @@ namespace Confab.Shared.Infrastructure.Modules
                 IEnumerable<string> GetSettings(string pattern) => Directory.EnumerateFiles(
                     ctx.HostingEnvironment.ContentRootPath, $"module.{pattern}.json", SearchOption.AllDirectories);
             });
+
+        internal static IServiceCollection AddModuleRequests(this IServiceCollection services,
+            IList<Assembly> assemblies)
+        {
+        }
+
+        private static void AddModuleRegistry(this IServiceCollection services, IEnumerable<Assembly> assemblies)
+        {
+            var registry = new ModuleRegistry();
+
+            var types = assemblies.SelectMany(x => x.GetTypes()).ToArray();
+            var eventTypes = types.Where(x => x.IsClass && typeof(IEvent).IsAssignableFrom(x)).ToArray();
+
+            foreach (var type in eventTypes)
+            {
+            }
+        }
     }
 }
