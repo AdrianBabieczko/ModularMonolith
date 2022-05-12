@@ -72,7 +72,8 @@ namespace Confab.Shared.Infrastructure
             services.AddSingleton<IContextFactory, ContextFactory>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient(sp => sp.GetRequiredService<IContextFactory>().Create());
-            services.AddModulesInfo(modules);
+            services.AddModuleInfo(modules);
+            services.AddModuleRequests(assemblies);
             services.AddAuth(modules);
             services.AddErrorHandling();
             services.AddEvents(assemblies);

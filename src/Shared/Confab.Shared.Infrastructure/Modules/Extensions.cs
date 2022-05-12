@@ -17,7 +17,7 @@ namespace Confab.Shared.Infrastructure.Modules
 {
     public static class Extensions
     {
-        internal static IServiceCollection AddModulesInfo(this IServiceCollection services, IList<IModule> modules)
+        internal static IServiceCollection AddModuleInfo(this IServiceCollection services, IList<IModule> modules)
         {
             var moduleInfoProvider = new ModuleInfoProvider();
             var moduleInfo =
@@ -59,6 +59,8 @@ namespace Confab.Shared.Infrastructure.Modules
             IList<Assembly> assemblies)
         {
             services.AddModuleRegistry(assemblies);
+            services.AddSingleton<IModuleClient, ModuleClient>();
+            services.AddSingleton<IModuleSerializer, JsonModuleSerializer>();
 
             return services;
         }
